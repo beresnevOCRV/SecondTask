@@ -3,21 +3,32 @@ package org.example;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class App
-{
-    public static void main( String[] args ) {
+import java.util.Random;
 
+public class App {
+
+  // пока без кастомного события, вернусь к нему как будет время
+
+    public static void main( String[] args ) {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
-        AutoFactory autoFactory = context.getBean("auto_factory", AutoFactory.class);
-        AutoFactory autoFactory1 = context.getBean("auto_factory1", AutoFactory.class);
+        AutoFactory autoFactory = context.getBean("autoFactory", AutoFactory.class);
+        AutoFactory autoFactory1 = context.getBean("autoFactory", AutoFactory.class);
 
-      // дополенние к первому заданию
+        autoFactory.setProductionLine(new SedanProductionLine());
+
         autoFactory.runProduction();
-        System.out.println("Sedan built:" + autoFactory.getProductionSize());
         autoFactory1.runProduction();
-        System.out.println("Coupe built:" + autoFactory1.getProductionSize());
 
+      //дополенние к первому заданию
+        System.out.println();
+        System.out.println("Cars built:" + (autoFactory.getCarsBuilt() + autoFactory1.getCarsBuilt()));;
+        System.out.println("Parts missing count:" + (autoFactory.getCarsNotBuilt() + autoFactory1.getCarsNotBuilt()));
+    }
+
+    public static boolean getRandomBool() {
+        Random random = new Random();
+        return random.nextBoolean();
     }
 
 }

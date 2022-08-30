@@ -1,13 +1,22 @@
 package org.example;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SedanProductionLine implements ProductionLine {
-    public SedanProductionLine() {
-    }
+
+    public SedanProductionLine() {}
 
     @Override
-    public void work() {
+    public Car work() {
       // дополнение к первому заданию
-        Car newCar = new Car("Black");
+        Car newCar = new Car("Black", App.getRandomBool());
+
+        if (newCar.isPartsDelivered()) {
+            System.out.println(newCar.getCarColour() + " " + "Sedan built");
+            return newCar;
+        }
+        return null;
     }
 
 }

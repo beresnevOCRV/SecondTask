@@ -2,8 +2,10 @@ package org.example;
 
 public class Car {
     private String carColour;
+    private boolean partsDelivered;
 
-    public Car(String carColour) {
+    public Car(String carColour, boolean partsDelivered) {
+        this.partsDelivered = partsDelivered;
         this.carColour = carColour;
     }
 
@@ -11,4 +13,11 @@ public class Car {
         return carColour;
     }
 
+    public boolean isPartsDelivered() {
+        return partsDelivered;
+    }
+
+    public void setPartsDelivered(boolean partsDelivered) {
+        this.partsDelivered = partsDelivered;
+    }
 }
